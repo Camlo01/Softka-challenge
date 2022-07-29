@@ -1,2 +1,6 @@
-package com.softka.challenge.Model.Entity.Client;public class ClientType {
+package com.softka.challenge.model.entity.client;
+
+public enum ClientType {
+    CLIENT,
+    ADMIN,
 }

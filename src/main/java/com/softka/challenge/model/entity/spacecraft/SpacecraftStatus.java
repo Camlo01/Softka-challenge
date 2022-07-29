@@ -1,4 +1,4 @@
-package com.softka.challenge.Model;
+package com.softka.challenge.model.entity.spacecraft;
 
 public enum SpacecraftStatus {
     ACTIVE,
