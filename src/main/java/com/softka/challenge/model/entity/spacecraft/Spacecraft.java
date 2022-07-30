@@ -7,19 +7,30 @@ import java.util.Date;
 
 @Entity
 @Table(name = "spacecraft")
-public class Spacecraft implements Serializable, SpacecraftBehaviors {
+public class Spacecraft implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-//    @Column(name = "idShip", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "is_ship", unique = true, nullable = false)
     private Integer idShip;
+    @Column(name = "name")
     private String name;
+    @Column(name = "start_activity")
     private Integer startActivity;
+    @Column(name = "end_activity")
     private Integer endActivity;
+    @Column(name = "country")
     private String country;
+    @Column(name = "status_active")
     private Boolean statusActive;
+    @Column(name = "manufacturer")
     private String manufacturer;
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "type_ship", columnDefinition = "ENUM('MANNEDSHIP', 'UNMANNEDSHIP', 'SPACESHUFFLE')")
+    @Enumerated(EnumType.STRING)
+    private typeShip type;
 
     // Constructors
 
