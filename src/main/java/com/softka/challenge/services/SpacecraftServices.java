@@ -16,14 +16,22 @@ public class SpacecraftServices {
 
     //GET
 
-    public Iterable<Spacecraft> allShips(){
+
+    public Iterable<Spacecraft> allShips() {
         return repository.findAll();
     }
 
+
+    public Iterable<Spacecraft> searchBy(String parameter) {
+        return repository.complexSearch(parameter);
+    }
+
+
     //POST
 
-    public Spacecraft save(Spacecraft ship){
+    public Spacecraft save(Spacecraft ship) {
         return repository.save(ship);
+
     }
 
 
