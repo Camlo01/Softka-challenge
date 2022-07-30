@@ -11,16 +11,19 @@ public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Client")
+    @Column(name = "id_client")
     private Integer idClient;
-    @Column(unique = true)
+    @Column(name = "email", unique = true)
     private String email;
+    @Column(name = "password")
     private String password;
+    @Column(name = "name")
     private String name;
-    @Column(name = "Client_Type")
+    @Column(name = "type", columnDefinition = "ENUM('CLIENT', 'ADMIN'")
+    @Enumerated(EnumType.STRING)
     private ClientType type;
-    @Column(name = "birth_Date")
-    private Date birthDate;
+    @Column(name = "keyclient", unique = true)
+    private String keyClient;
 
 
     //Constructors
@@ -28,15 +31,15 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(Integer idClient, String email, String password, String name, ClientType type, Date birthDate) {
+
+    public Client(Integer idClient, String email, String password, String name, ClientType type, String keyClient) {
         this.idClient = idClient;
         this.email = email;
         this.password = password;
         this.name = name;
         this.type = type;
-        this.birthDate = birthDate;
+        this.keyClient = new Keyclient().generateKeyClient();
     }
-
 
     //Getters and setters
 
@@ -81,13 +84,11 @@ public class Client implements Serializable {
         this.type = type;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public String getKeyClient() {
+        return keyClient;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setKeyClient(String keyClient) {
+        this.keyClient = keyClient;
     }
-
-
 }
