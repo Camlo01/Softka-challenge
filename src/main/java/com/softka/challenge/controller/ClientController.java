@@ -25,6 +25,15 @@ public class ClientController {
     }
 
 
+    // - POST
+
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client registerClient(@RequestBody Client client) {
+        return services.register(client);
+    }
+
+
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Optional<Client> login(@RequestBody Client clientReceive) {
