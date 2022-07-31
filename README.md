@@ -1,5 +1,6 @@
 # Softka-challenge
 
+Link video explicación: https://youtu.be/MybPODx2iCY
 
 ## Resolver problemas al descargar el proyecto
 
