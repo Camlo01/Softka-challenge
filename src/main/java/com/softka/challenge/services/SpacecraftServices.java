@@ -32,7 +32,14 @@ public class SpacecraftServices {
 
     //POST
 
-    public Spacecraft save(Spacecraft ship) {
+    public Spacecraft saveShip(Spacecraft ship, Keyclient key){
+        if(clientServices.hasPermissions(key)){
+            return repository.save(ship);
+        }
+        return null;
+    }
+
+    private Spacecraft save(Spacecraft ship) {
         return repository.save(ship);
 
     }
@@ -43,6 +50,17 @@ public class SpacecraftServices {
             return repository.save(ship);
         }
         return  new Spacecraft();
+    }
+    //DELETE
+    public boolean deleteShip(int id, Keyclient key){
+
+        if(clientServices.hasPermissions(key)) {
+            return repository.findById(id).map(clientGetted -> {
+                repository.delete(clientGetted);
+                return true;
+            }).orElse(false);
+        }
+        return false;
     }
 
 
