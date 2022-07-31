@@ -56,9 +56,10 @@ function loadShipsReceived(data) {
     allShips += `<td>${ship.description}</td>`;
 
     if (isAdminTheClient) {
-      allShips += `<td> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEditShip${ship.idShip}">
-    Editar
-  </button></td>`;
+      allShips += `<td> 
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalEditShip${ship.idShip}">Editar </button>
+      <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" onclick="deleteShip(${ship.idShip})">Eliminar</button>
+      </td>`;
       allShips += `
   <div class="modal fade" id="ModalEditShip${
     ship.idShip
@@ -66,11 +67,12 @@ function loadShipsReceived(data) {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Edición</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        Editar la nave ${ship.name}
+
+        Estás editando la nave "${ship.name}"
 
         <form>
           <div class="mb-3">
@@ -113,7 +115,6 @@ function loadShipsReceived(data) {
              <label class="form-check-label" for="defaultCheck1" >Status de la nave</label>
            </div>
 
-        
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Fabricante</label>
             <input type="email"  value="${
@@ -203,7 +204,15 @@ function updateShip(id) {
   });
 }
 
-// <div class="mb-3">
-// <label for="exampleInputEmail1" class="form-label">activo?</label>
-// <input type="text"  value="${ship.statusActive}" class="form-control" id="inputActive${ship.statusActive}" aria-describedby="emailHelp">
-// </div>
+function deleteShip(id) {
+  let data = {
+    keyClient: localStorage.getItem("keyClient"),
+  };
+  fetch(`http://localhost:8080/api/spacecraft/ship/delete= +${id}`, {
+    method: "DELETE",
+    body: JSON.stringify(data),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  }).then((response) => {
+    console.log(response.statusText);
+  });
+}
