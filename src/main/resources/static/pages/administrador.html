@@ -13,8 +13,9 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 
-        <script src="../js/loadShips.js"></script>
-        <script src="../js/sesion.js"></script>
+    <script src="../js/loadShips.js"></script>
+    <script src="../js/sesion.js"></script>
+    <script src="../js/createShip.js"></script>
 
 
     <title>Document</title>
@@ -25,7 +26,7 @@
     <head>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" >Admin</a>
+                <a class="navbar-brand">ADMINISTRADOR</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -37,10 +38,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="../index.html">Inicio</a>
                         </li>
-                        <div id="buttonRedirecAdmin">
-                            <script>enableLinkNavToAdminPage()</script>
-                        </div>
-
+              
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" id="inputOfSearch" type="search" placeholder="Search"
@@ -55,6 +53,28 @@
             </div>
         </nav>
     </head>
+
+    <p>
+      
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Agregar nueva nave
+        </button>
+      </p>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body" id="WhereInsertFormCreateShip">
+                <script>formCreateShip()</script>
+        </div>
+      </div>
+
+
+
+    <main>
+        <div id="whereToLoadShips"></div>
+        <script>loadShips()</script>
+    </main>
+
+
+
 
 </body>
 
