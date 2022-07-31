@@ -12,10 +12,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
-//@SpringBootApplication(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-//@EntityScan("com.softka.challenge.model.entity")
-//@ComponentScan({"com.softka.challenge.services","com.softka.challenge.controller"})
-//@EnableJpaRepositories("com.softka.challenge")
 public class ChallengeApplication implements CommandLineRunner {
 
     private final Log Logger = LogFactory.getLog(ChallengeApplication.class);
