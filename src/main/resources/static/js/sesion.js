@@ -5,6 +5,11 @@ function isLogged() {
     return false;
   }
 }
+function isLoggedAdmin() {
+  if (localStorage.getItem("typeClient") == "ADMIN") {
+    return true;
+  }
+}
 
 function sesionNavbar() {
   if (!isLogged()) {
@@ -160,14 +165,14 @@ function createAccount() {
   let email = document.getElementById("inputEmailRegister").value;
   let password = document.getElementById("inputPasswordRegister").value;
 
-  if (validateEmailAndPassword(email, password) && isAgeValid(birthDate)) {
+  if (validateEmailAndPassword(email, password)) {
     let data = {
       email: email,
       password: password,
       name: name,
     };
 
-    fetch("", {
+    fetch("http://localhost:8080/api/spacecraft/client/save", {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -177,7 +182,6 @@ function createAccount() {
           let account = {
             email: email,
             password: password,
-            birthDate: birthDate,
           };
           fetch(`http://localhost:8080/api/spacecraft/client/login`, {
             method: "POST",
@@ -248,6 +252,7 @@ function logOut() {
 }
 
 function loginLogic(data) {
+  console.log(data);
   if (!(data.idClient == null)) {
     localStorage.setItem("logged", "si");
     localStorage.setItem("name", data.name);
@@ -275,28 +280,6 @@ function clearInputs() {
   document.getElementById("inputPasswordLogin").value = null;
 }
 
-function isAgeValid(birthDate) {
-  let cumpleanos = new Date(birthDate); //.toISOString();
-  let horaActual = new Date(); //.toISOString();
-
-  let miliSegundosDia = 24 * 60 * 60 * 1000;
-
-  let milisegundosTranscurridos = Math.abs(
-    cumpleanos.getTime() - horaActual.getTime()
-  );
-
-  let diasTranscurridos = Math.round(
-    milisegundosTranscurridos / miliSegundosDia
-  );
-
-  if (diasTranscurridos >= 6575) {
-    return true;
-  } else {
-    alert("Lo sentimos, si eres menor de edad no puedes craer tu cuenta :(");
-    return false;
-  }
-}
-
 function validateEmailAndPassword(email, password) {
   let emailRule = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
   let passwordRule =
@@ -317,7 +300,7 @@ function validateEmailAndPassword(email, password) {
 }
 
 function enableLinkNavToAdminPage() {
-  if (isLogged()) {
+  if (isLogged() && isLoggedAdmin()) {
     let buttonToAdminPage = `
     <li class="nav-item">
         <a class="nav-link" href="./pages/administrador.html">administrar</a>
