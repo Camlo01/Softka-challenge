@@ -10,7 +10,7 @@ import java.util.Date;
 public class Spacecraft implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "is_ship", unique = true, nullable = false)
     private Integer idShip;
     @Column(name = "name")
@@ -40,6 +40,17 @@ public class Spacecraft implements Serializable {
 
     public Spacecraft(String name) {
         this.name = name;
+    }
+
+    public Spacecraft(String name, Integer startActivity, Integer endActivity, String country, Boolean statusActive, String manufacturer, String description) {
+        this.name = name;
+        this.startActivity = startActivity;
+        this.endActivity = endActivity;
+        this.country = country;
+        this.statusActive = statusActive;
+        this.manufacturer = manufacturer;
+        this.description = description;
+        this.type = typeShip.SPACESHUFFLE;
     }
 
     public Spacecraft(Integer idShip, String name, Integer startActivity, Integer endActivity, String country, Boolean statusActive, String manufacturer, String description) {
@@ -117,6 +128,14 @@ public class Spacecraft implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public typeShip getType() {
+        return type;
+    }
+
+    public void setType(typeShip type) {
+        this.type = type;
     }
 
 
