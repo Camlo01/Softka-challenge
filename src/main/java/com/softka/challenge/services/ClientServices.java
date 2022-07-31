@@ -24,6 +24,12 @@ public class ClientServices {
     }
 
 
+    public Client register(Client client){
+        client.setKeyClient(new Keyclient().generateKeyClient());
+        return repository.save(client);
+
+    }
+
     // LOGIN
     public Optional<Client> login(Client clientToLogin) {
 
@@ -51,4 +57,5 @@ public class ClientServices {
         }
         return false;
     }
+
 }
