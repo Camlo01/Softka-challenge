@@ -2,6 +2,7 @@ package com.softka.challenge.controller;
 
 
 import com.softka.challenge.model.DTO.Wrapper.SpacecraftKeyclient;
+import com.softka.challenge.model.entity.client.Keyclient;
 import com.softka.challenge.model.entity.spacecraft.Spacecraft;
 import com.softka.challenge.services.SpacecraftServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +35,29 @@ public class SpacecraftController {
     //--POST
 
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody
-    Spacecraft save(@RequestBody Spacecraft ship) {
-        System.out.println(ship.getName());
-        return services.save(ship);
+    Spacecraft save(@RequestBody SpacecraftKeyclient body) {
+        return services.saveShip(body.getSpacecraft(), body.getKeyclient());
     }
 
     //--PUT
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody Spacecraft update(@RequestBody SpacecraftKeyclient body){
         return services.update(body.getSpacecraft(), body.getKeyclient());
+    }
+
+    //- DELETE
+
+    @DeleteMapping("/delete={id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteShip(
+            @PathVariable int id,
+            @RequestBody Keyclient keyclient
+    ){
+        return services.deleteShip(id, keyclient);
     }
 
 
