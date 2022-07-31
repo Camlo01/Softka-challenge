@@ -46,6 +46,7 @@ function formCreateShip() {
 }
 
 function saveShip() {
+
   let name = document.getElementById("inputNameShip").value;
   let startActivity = document.getElementById("inputStartActivityShip").value;
   let endActivity = document.getElementById("inputEndActivityShip").value;
@@ -68,13 +69,14 @@ function saveShip() {
     },
   };
 
-  fetch("http://localhost:8080/api/Gama/save", {
+  fetch("http://localhost:8080/api/spacecraft/ship/save", {
     method: "POST",
     body: JSON.stringify(data),
     headers: { "Content-type": "application/json; charset=UTF-8" },
-  }).then(() => {
+  }).then((data) => {
+    console.log(data.status);
     location.reload();
   });
 
-  alert("SE CREA EL SHIP");
+  // alert("SE CREA EL SHIP");
 }
