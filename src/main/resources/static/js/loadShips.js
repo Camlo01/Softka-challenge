@@ -213,6 +213,7 @@ function deleteShip(id) {
     body: JSON.stringify(data),
     headers: { "Content-type": "application/json; charset=UTF-8" },
   }).then((response) => {
+    location.reload();
     console.log(response.statusText);
   });
 }
